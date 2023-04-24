@@ -78,14 +78,14 @@ public void testCurrency() {
    assertEquals("CHF", Money.franc(1).currency());
 }
 
-abstract class Money  {
+class Money  {
    protected int amount;
 
    private String currency;
    
-   public boolean equals(Object object)  {
+   public boolean equals(Object object) {
       Money money = (Money) object;
-      return amount == money.amount;
+      return amount == money.amount && currency().equals(money.currency());
    }
 
    static Money dollar(int amount) {
@@ -99,6 +99,10 @@ abstract class Money  {
     Money(int amount, String currency) {
       this.amount = amount;
       this.currency = currency;
+    }
+
+    Money times(int multiplier) {
+      return new Money(amount * multiplier, currency);
     }
 
    abstract Money times(int multiplier);
