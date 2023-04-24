@@ -13,7 +13,7 @@ class Dollar extends Money {
    }
 
    Money times(int multiplier)  {
-      return new Dollar(amount * multiplier);
+      return Money.dollar(amount * multiplier);
    }
 
    public boolean equals(Object object) {
@@ -62,7 +62,7 @@ class Franc extends Money {
     }
 
     Money times(int multiplier)  {
-      return new Franc(amount * multiplier);
+      return Money.franc(amount * multiplier);
     }
 
     public boolean equals(Object object) {					
