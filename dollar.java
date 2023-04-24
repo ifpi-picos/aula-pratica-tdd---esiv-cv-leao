@@ -6,6 +6,10 @@ class Dollar {
    void times(int multiplier) {
       amount= amount * multiplier;
    }
+
+   Dollar times(int multiplier) {
+      return new Dollar(amount * multiplier);
+   }
 }	
 
 public void testMultiplication() {
