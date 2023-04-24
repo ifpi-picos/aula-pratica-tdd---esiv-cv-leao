@@ -108,3 +108,7 @@ abstract class Money  {
       return currency;
    }
 }
+
+public void testDifferentClassEquality() {
+   assertTrue(new Money(10, "CHF").equals(new Franc(10, "CHF")));
+}
