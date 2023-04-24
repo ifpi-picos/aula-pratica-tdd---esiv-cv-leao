@@ -1,4 +1,4 @@
-class Dollar {
+class Dollar extends Money {
    private int amount;
    Dollar(int amount) {
       this.amount= amount;
@@ -16,6 +16,10 @@ class Dollar {
       Money money = (Money) object;
       return amount == money.amount && getClass().equals(money.getClass());
    }
+
+   String currency() {
+       return "USD";
+    }
 }	
 
 public void testMultiplication() {
@@ -43,7 +47,7 @@ public void testFrancMultiplication() {
    assertEquals(Money.franc(15), five.times(3));
 }
 
-class Franc {   
+class Franc extends Money {   
    private int amount;					
    Franc(int amount) {      
       this.amount= amount;
@@ -56,10 +60,19 @@ class Franc {
     public boolean equals(Object object) {					
        Franc franc = (Franc) object;      
        return amount == franc.amount;					
-    }					
+    }
+
+    String currency() {
+      return "CHF";
+   }					
 }
 
-class Money  {
+public void testCurrency() {
+   assertEquals("USD", Money.dollar(1).currency());
+   assertEquals("CHF", Money.franc(1).currency());
+}
+
+abstract class Money  {
    protected int amount;
    
    public boolean equals(Object object)  {
@@ -76,4 +89,5 @@ class Money  {
     }
 
    abstract Money times(int multiplier);
+   abstract String currency();
 }
