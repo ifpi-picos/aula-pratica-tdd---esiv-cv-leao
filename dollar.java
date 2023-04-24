@@ -3,9 +3,9 @@ class Dollar extends Money {
 
    private String currency;
 
-   Dollar(int amount) {
+   Dollar(int amount, String currency) {
       this.amount= amount;
-      currency = "USD";
+      this.currency = currency;
    }
 
    void times(int multiplier) {
@@ -56,9 +56,9 @@ class Franc extends Money {
 
    private String currency;
 
-   Franc(int amount) {      
-      this.amount= amount;
-      currency = "CHF";
+   Franc(int amount, String currency) {      
+      this.amount = amount;
+      this.currency = currency;
     }
 
     Money times(int multiplier)  {
@@ -89,11 +89,11 @@ abstract class Money  {
    }
 
    static Money dollar(int amount) {
-    return new Dollar(amount);
+    return new Dollar(amount, "USD");
    }
 
    static Money franc(int amount) {
-      return new Franc(amount);
+      return new Franc(amount, "CHF");
     }
 
    abstract Money times(int multiplier);
