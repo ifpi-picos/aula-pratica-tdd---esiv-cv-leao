@@ -1,7 +1,11 @@
 class Dollar extends Money {
    private int amount;
+
+   private String currency;
+
    Dollar(int amount) {
       this.amount= amount;
+      currency = "USD";
    }
 
    void times(int multiplier) {
@@ -20,7 +24,7 @@ class Dollar extends Money {
    String currency() {
        return "USD";
     }
-}	
+}
 
 public void testMultiplication() {
    Money five = Money.dollar(5);
@@ -48,9 +52,13 @@ public void testFrancMultiplication() {
 }
 
 class Franc extends Money {   
-   private int amount;					
+   private int amount;
+
+   private String currency;
+
    Franc(int amount) {      
       this.amount= amount;
+      currency = "CHF";
     }
 
     Money times(int multiplier)  {
