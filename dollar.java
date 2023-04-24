@@ -25,11 +25,11 @@ public void testMultiplication() {
 }
 
 public void testEquality() {
-   assertTrue(new Dollar(5).equals(new Dollar(5)));
-   assertFalse(new Dollar(5).equals(new Dollar(6)));
-   assertTrue(new Franc(5).equals(new Franc(5)));
-   assertFalse(new Franc(5).equals(new Franc(6)));
-   assertFalse(new Franc(5).equals(new Dollar(5)));
+   assertTrue(new Dollar(5).equals(Money.dollar(5)));
+   assertFalse(new Dollar(5).equals(Money.dollar(6)));
+   assertTrue(new Franc(5).equals(Money.franc(5)));
+   assertFalse(new Franc(5).equals(Money.franc(6)));
+   assertFalse(new Franc(5).equals(Money.dollar(5)));
 }
 
 public boolean equals(Object object)  {
@@ -38,9 +38,9 @@ public boolean equals(Object object)  {
 }
 
 public void testFrancMultiplication() {
-   Franc five = new Franc(5);
-   assertEquals(new Franc(10), five.times(2));
-   assertEquals(new Franc(15), five.times(3));
+   Money five = Money.franc(5);
+   assertEquals(Money.franc(10), five.times(2));
+   assertEquals(Money.franc(15), five.times(3));
 }
 
 class Franc {   
@@ -59,7 +59,7 @@ class Franc {
     }					
 }
 
-abstract class Money  {
+class Money  {
    protected int amount;
    
    public boolean equals(Object object)  {
@@ -67,9 +67,13 @@ abstract class Money  {
       return amount == money.amount;
    }
 
-   static Dollar dollar(int amount) {
+   static Money dollar(int amount) {
     return new Dollar(amount);
    }
+
+   static Money franc(int amount) {
+      return new Franc(amount);
+    }
 
    abstract Money times(int multiplier);
 }
